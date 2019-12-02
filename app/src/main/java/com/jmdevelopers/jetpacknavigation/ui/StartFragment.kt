@@ -1,18 +1,18 @@
 package com.jmdevelopers.jetpacknavigation.ui
 
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.jmdevelopers.jetpacknavigation.R
 import kotlinx.android.synthetic.main.fragment_start.*
 
 
 class StartFragment : Fragment() {
-    private lateinit var listener: OnbuttonCliked
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,27 +25,11 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buttonext.setOnClickListener {
-            listener.buttoncliked()
+            // ação para fazer a transição em 2 telas ele cria um id ja com os 2
+            findNavController().navigate(R.id.action_startFragment_to_profileFragment)
         }
     }
 
-    // se a minha interface implementar a interface
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnbuttonCliked) {
-            listener = context
 
-
-        }
-    }
-    companion object {
-        fun newinstance(): StartFragment {
-            return StartFragment()
-        }
-    }
-
-    interface OnbuttonCliked {
-        fun buttoncliked()
-    }
 
 }
